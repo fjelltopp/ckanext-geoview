@@ -221,7 +221,7 @@ class OLGeoView(GeoViewBase):
 class GeoJSONView(GeoViewBase):
     p.implements(p.ITemplateHelpers, inherit=True)
 
-    GeoJSON = ['gjson', 'geojson']
+    GeoJSON = ['gjson', 'geojson', 'shp', "SHP"]
 
     def update_config(self, config):
 

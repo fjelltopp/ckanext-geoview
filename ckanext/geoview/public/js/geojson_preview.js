@@ -22,16 +22,26 @@ ckan.module('geojsonpreview', function (jQuery, _) {
 
       // hack to make leaflet use a particular location to look for images
       L.Icon.Default.imagePath = this.options.site_url + 'js/vendor/leaflet/dist/images';
+      format = preload_resource["format"];
 
-      jQuery.getJSON(preload_resource['url']).done(
-        function(data){
-          self.showPreview(data);
-        })
-      .fail(
-        function(jqXHR, textStatus, errorThrown) {
-          self.showError(jqXHR, textStatus, errorThrown);
-        }
-      );
+      if(format == "GeoJSON"){
+	jQuery.getJSON(preload_resource['url']).done(
+          function(data){
+            self.showPreview(data);
+          })
+	      .fail(
+		function(jqXHR, textStatus, errorThrown) {
+		  self.showError(jqXHR, textStatus, errorThrown);
+		}
+	      );
+      }else if(format == "SHP"){
+	shp(preload_resource['url']).then(function(geojson){
+	  self.showPreview(geojson);
+	});
+
+      }
+
+      
 
       // The standard CRS for GeoJSON according to RFC 7946 is
       // urn:ogc:def:crs:OGC::CRS84, but proj4s uses a different name

@@ -35,7 +35,7 @@
 }
 
 .label[data-format=geojson] {
-    background-color: #9855e0;
+    background-color: #8d2932;
 }
 .format-label[data-format=geojson],
 .format-label[data-format*=geojson] {

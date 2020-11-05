@@ -103,6 +103,7 @@ class ServiceProxyController(base.BaseController):
         return proxy_service_resource(self, context, data_dict)
 
     def proxy_service_url(self, map_id=None):
+        self._py_object.request
         if ('ckanext.spatial.common_map.'+map_id+'.url') in base.config:
             # backward compatible with old geoview config
             url = base.config.get('ckanext.spatial.common_map.'+map_id+'.url')

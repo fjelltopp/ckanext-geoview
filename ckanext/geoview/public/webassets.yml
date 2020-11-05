@@ -1,0 +1,68 @@
+openlayers-css:
+  output: ckanext-geoview/%(version)s_openlayers.css
+  contents:
+    - css/ol_preview.css
+    - js/vendor/openlayers/ol.css
+    - js/vendor/ol-helpers/ol-helpers.css
+  filters: cssrewrite
+
+openlayers-js:
+  output: ckanext-geoview/%(version)s_openlayers.js
+  contents:
+    - js/vendor/underscore/underscore.js
+    - js/vendor/proj4/dist/proj4-src.js
+    - js/vendor/openlayers/ol.js
+    - js/vendor/ol-helpers/ol-helpers.js
+    - js/vendor/ol-helpers/ol-layer-switcher.js
+    - js/ol_preview.js
+  filters: rjsmin
+  extra:
+    preload: ckanext-geoview/openlayers-css
+
+geo-resource-styles:
+  output: ckanext-geoview/%(version)s_geoview.css
+  contents:
+    - css/geo-resource-styles.css
+  filters: cssrewrite
+
+geojson-css:
+  output: ckanext-geoview/%(version)s_geojson.css
+  contents:
+    - js/vendor/leaflet/dist/leaflet.css
+    - css/geojson_preview.css
+  filters: cssrewrite
+
+geojson-js:
+  output: ckanext-geoview/%(version)s_geojson.js
+  contents:
+    - js/vendor/leaflet/dist/leaflet.js
+    - js/vendor/proj4js/proj4.js
+    - js/vendor/proj4leaflet/src/proj4leaflet.js
+    - js/vendor/shapefile-js/dist/shp.js
+    - js/common_map.js
+    - js/geojson_preview.js
+  filters: rjsmin
+  extra:
+    preload:
+    - ckanext-geoview/geojson-css
+    - base/main
+
+wmts-css:
+  output: ckanext-geoview/%(version)s_wmts.css
+  contents:
+    - js/vendor/leaflet/dist/leaflet.css
+    - css/wmts_preview.css
+  filters: cssrewrite
+
+wmts:
+  output: ckanext-geoview/%(version)s_wmts.js
+  contents:
+    - js/vendor/leaflet/dist/leaflet.js
+    - js/vendor/proj4js/proj4.js
+    - js/common_map.js
+    - js/wmts_preview.js
+    - js/vendor/leaflet/dist/leaflet.css
+    - css/wmts_preview.css
+  filters: rjsmin
+  extra:
+    preload: ckanext-geoview/wmts-css

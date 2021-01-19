@@ -82,15 +82,15 @@ def proxy_service_url(self, url):
                 file size: {allowed}, Content-Length: {actual}. Url: '''+url).format(
                     allowed=MAX_FILE_SIZE, actual=length))
 
-    except requests.exceptions.HTTPError, error:
+    except requests.exceptions.HTTPError as error:
         details = 'Could not proxy resource. Server responded with %s %s' % (
             error.response.status_code, error.response.reason)
         base.abort(409, detail=details)
-    except requests.exceptions.ConnectionError, error:
+    except requests.exceptions.ConnectionError as error:
         details = '''Could not proxy resource because a
                             connection error occurred. %s''' % error
         base.abort(502, detail=details)
-    except requests.exceptions.Timeout, error:
+    except requests.exceptions.Timeout as error:
         details = 'Could not proxy resource because the connection timed out.'
         base.abort(504, detail=details)
 

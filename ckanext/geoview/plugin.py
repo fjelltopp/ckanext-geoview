@@ -55,8 +55,8 @@ def load_basemaps(basemapsFile):
     try:
         with open(basemapsFile) as config_file:
             basemapsConfig = json.load(config_file)
-    except Exception, inst:
-        msg = "Couldn't read basemaps config from %r: %s" % (basemapsFile, inst)
+    except Exception as e:
+        msg = "Couldn't read basemaps config from %r: %s" % (basemapsFile, e)
         raise Exception(msg)
 
     return basemapsConfig
@@ -185,7 +185,7 @@ class OLGeoView(GeoViewBase):
             parsed_url = urlparse.urlparse(url)
             format_lower = (os.path.splitext(parsed_url.path)[1][1:]
                             .encode('ascii', 'ignore').lower())
-        except ValueError, e:
+        except ValueError as e:
             log.error('Invalid URL: {0}, {1}'.format(url, e))
             format_lower = ''
 

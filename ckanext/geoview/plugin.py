@@ -1,5 +1,5 @@
 import mimetypes
-import urlparse
+from urllib.parse import urlparse
 import os
 
 from logging import getLogger
@@ -182,7 +182,7 @@ class OLGeoView(GeoViewBase):
 
     def _guess_format_from_extension(self, url):
         try:
-            parsed_url = urlparse.urlparse(url)
+            parsed_url = urlparse(url)
             format_lower = (os.path.splitext(parsed_url.path)[1][1:]
                             .encode('ascii', 'ignore').lower())
         except ValueError as e:

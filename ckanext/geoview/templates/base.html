@@ -2,18 +2,6 @@
 
 {% block styles %}
     {{ super() }}
-    {% asset 'ckanext-geoview/geo-resource-styles' %}
-{% endblock %}
-
-{% block links %}
-    {{ super() }}
-
-    <!--[if IE]>
-    <script src="{{ h.url_for_static('/classList.min.js') }}"></script>
-    <![endif]-->
-
-    {% resource 'pages/css/medium-editor.css' %}
-    {% resource 'pages/css/bootstrap.css' %}
-    {% resource 'pages/js/medium-editor.js' %}
-    {% resource 'pages/js/pages-editor.js' %}
+    {% set type = 'asset' if h.ckan_version().split('.')[1] | int >= 9 else 'resource' %}
+    {% include 'geoview/snippets/geo-resource-styles_' ~ type ~ '.html' %}
 {% endblock %}
